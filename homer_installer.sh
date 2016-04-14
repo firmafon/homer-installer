@@ -44,7 +44,7 @@ DB_USER=homer_user
 DB_PASS=homer_password
 DB_HOST="127.0.0.1"
 LISTEN_PORT=9060
-LOCAL_IP=$(ip addr show | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
+LOCAL_IP=$(ip addr show | grep -E '^\s*inet' | grep -m1 global | awk '{ print $2 }' | sed 's|/.*||')
 
 # HOMER MySQL Options, defaults
 sqluser=root
